@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List
 from datetime import datetime
+from .passes import PassType
 
 class DiscountBase(BaseModel):
     code: str
@@ -14,9 +15,11 @@ class DiscountCreate(DiscountBase):
 
 class DiscountInDB(DiscountBase):
     id: str = Field(..., alias="_id")
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=datetime.now)
     is_active: bool = True
     times_used: int = 0
+    used_by: List[str] = []  # user_ids
+    applicable_pass_types: Optional[List[PassType]] = None
 
 class DiscountUpdate(BaseModel):
     percentage: Optional[float] = None

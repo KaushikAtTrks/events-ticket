@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 from typing import Optional
 from datetime import datetime
 from enum import Enum
+from .passes import PassType
 
 class PaymentMode(str, Enum):
     CASH = "cash"
@@ -18,8 +19,9 @@ class StaffSaleCreate(StaffSaleBase):
 
 class StaffSaleInDB(StaffSaleBase):
     id: str = Field(..., alias="_id")
-    sale_time: datetime = Field(default_factory=datetime.utcnow)
+    sale_time: datetime = Field(default_factory=datetime.now)
     commission: Optional[float] = None
+    booking_type: Optional[PassType] = None
 
 class StaffSale(StaffSaleBase):
     id: str = Field(..., alias="_id")

@@ -33,11 +33,12 @@ class BookingCreate(BookingBase):
 
 class BookingInDB(BookingBase):
     id: str = Field(..., alias="_id")
-    qr_code: str
+    qr_code: str 
+    group_qr_codes: Optional[List[str]] = None 
     status: BookingStatus = BookingStatus.ACTIVE
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=datetime.now)
     payment_id: Optional[str] = None
-    amount_paid: float
+    amount_paid: float = 0
 
 class BookingUpdate(BaseModel):
     payment_status: Optional[PaymentStatus] = None
@@ -51,3 +52,9 @@ class Booking(BookingBase):
     created_at: datetime
     payment_id: Optional[str]
     amount_paid: float
+
+class QRValidationResponse(BaseModel):
+    valid: bool
+    booking_id: Optional[str] = None
+    message: Optional[str] = None
+    group_members_status: Optional[List[GroupMember]] = None

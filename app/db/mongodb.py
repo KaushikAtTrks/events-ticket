@@ -1,16 +1,17 @@
-from motor.motor_asyncio import AsyncIOMotorClient
+import motor.motor_asyncio
 from ..core.config import get_settings
 
 settings = get_settings()
+motorClient = motor.motor_asyncio.AsyncIOMotorClient
 
 class MongoDB:
-    client: AsyncIOMotorClient = None
+    client: motorClient = None
     db = None
 
     @classmethod
     async def connect_to_database(cls):
         if cls.client is None:
-            cls.client = AsyncIOMotorClient(settings.MONGODB_URL)
+            cls.client = motorClient(settings.MONGODB_URL)
             cls.db = cls.client[settings.DB_NAME]
 
     @classmethod

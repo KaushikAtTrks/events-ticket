@@ -21,6 +21,8 @@ class UserInDB(UserBase):
     role: UserRole = UserRole.USER
     password_hash: str
     created_at: datetime = Field(default_factory=datetime.utcnow)
+    purchased_passes: List[str] = []
+    otp_verified: bool = False
 
 class UserUpdate(BaseModel):
     name: Optional[str] = None

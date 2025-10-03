@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List
 from ...db.mongodb import MongoDB
-from ...db.models.pass_ import PassCreate, PassInDB, Pass, PassUpdate
+from ...db.models.passes import PassCreate, PassInDB, Pass, PassUpdate
 from ...db.models.user import UserInDB
 from ..endpoints.auth import get_current_user
 from bson import ObjectId

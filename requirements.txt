@@ -1,7 +1,14 @@
 fastapi==0.103.1
 uvicorn==0.23.2
-motor==3.3.1
-pydantic==2.3.0
+motor==3.1.1
+pymongo==4.3.3
+pydantic==2.4.2
+pydantic-settings==2.0.3
+email-validator==2.0.0
+pytest==7.4.2
+pytest-asyncio==0.21.1
+httpx==0.25.0
+asgi-lifespan==2.1.0
 python-jose==3.3.0
 passlib==1.7.4
 python-multipart==0.0.6
